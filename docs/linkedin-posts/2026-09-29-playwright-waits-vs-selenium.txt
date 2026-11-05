@@ -1,0 +1,33 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟯
+⠀
+Same demo shop, same "add to cart" click. The Selenium framework needs a custom wait loop that retries stale elements. The Playwright one is a single locator click.
+⠀
+That's the real waiting difference. Whether it also cuts total run time is a separate question.
+⠀
+Previously, in Learning 2: page objects that return counts or booleans turn Playwright's retrying assertions into one-time snapshots, so expose Locators instead. In Learning 3: Playwright's auto-waiting removes wait code and stale-element handling, but total run time only drops once you also use parallel workers, storageState and traces.
+⠀
+𝗪𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝘄𝗮𝗶𝘁 𝗹𝗶𝘃𝗲𝘀
+Selenium waits where you write them. The Selenium + Cucumber framework does it well: a WebDriverWait in BasePage, no implicit wait (Selenium's docs warn that mixing implicit and explicit waits causes unpredictable wait times), no Thread.sleep.
+⠀
+Still, adding a product needed a wait that re-finds the item and swallows StaleElementReferenceException, because the list re-renders. And elementToBeClickable only checks visible and enabled.
+⠀
+Playwright waits inside every action. Before a click, 𝗮𝗰𝘁𝗶𝗼𝗻𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗰𝗵𝗲𝗰𝗸𝘀 confirm the element is visible, stable, receives the pointer event and is enabled, retrying until the timeout. A locator finds an up-to-date element on every action, so there's no stale handle to catch. Web-first assertions retry the same way.
+⠀
+The Playwright repo's SauceDemo page objects contain no explicit waits and no waitForTimeout.
+⠀
+𝗪𝗵𝗲𝗻 𝘁𝗼𝘁𝗮𝗹 𝘁𝗶𝗺𝗲 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗱𝗿𝗼𝗽𝘀
+Auto-waiting mostly saves 𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 𝘁𝗶𝗺𝗲: less wait code to write and review, fewer timing failures to rerun. Wall-clock time drops when you also use the rest:
+→ Parallel workers and --shard. Each test gets its own 𝗯𝗿𝗼𝘄𝘀𝗲𝗿 𝗰𝗼𝗻𝘁𝗲𝘅𝘁, which the docs call fast and cheap to create. The Selenium framework keeps parallel off by default because every scenario launches its own browser, which can saturate a laptop's CPU.
+→ storageState, to log in once instead of in every test.
+→ Trace Viewer, so a CI failure is diagnosed from DOM snapshots and network calls, not by rerunning it.
+⠀
+𝗪𝗵𝗲𝗻 𝗶𝘁 𝗯𝗮𝗿𝗲𝗹𝘆 𝗺𝗼𝘃𝗲𝘀
+Those levers aren't automatic. This repo's CI runs with workers: 1 and one shard by default, and the SauceDemo fixture logs in through the UI before every test.
+⠀
+And if your Selenium framework already has solid explicit-wait helpers, or the suite is bound by a slow environment, test data or the app itself, switching tools won't move that number much.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+Where does your suite's time actually go: waits, logins, serial execution, or the environment? 👇
+⠀
+#Playwright #Selenium #TestAutomation #TestArchitecture #SDET

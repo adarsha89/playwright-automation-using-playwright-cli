@@ -1,0 +1,6 @@
+Use playwright cli and create this testcase
+<Testcase description with steps>
+
+Do not use automation orchestrator agent
+
+Then remove all stale sessions of playwright cli

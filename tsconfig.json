@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "types": ["node", "@playwright/test"]
+  },
+  "include": ["**/*.ts", "fixtures/shared-browser/browser-server.mjs"],
+  "exclude": ["node_modules", "playwright-report", "test-results", "reports"]
+}

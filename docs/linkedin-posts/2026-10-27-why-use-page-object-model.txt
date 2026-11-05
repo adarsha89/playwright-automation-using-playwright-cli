@@ -1,0 +1,25 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟱
+⠀
+POM helps when UI behavior is reused. It becomes overhead when the abstraction hides what a test actually does.
+⠀
+A useful page object gives the UI one clear home while keeping the scenario readable in the spec.
+⠀
+Previously, in Learning 4: Playwright’s built-in waits and parallel runner help reliability and throughput, but actual speed depends on the suite. In Learning 5: use page objects to centralize reusable UI mechanics, while keeping test intent and assertions visible.
+⠀
+𝗪𝗵𝗮𝘁 𝗯𝗲𝗹𝗼𝗻𝗴𝘀 𝗶𝗻 𝗮 𝗽𝗮𝗴𝗲 𝗼𝗯𝗷𝗲𝗰𝘁
+In this repo, LoginPage owns login locators and the login action. InventoryPage owns cart controls, and CartPage describes cart content. Specs read like workflows: log in, check the inventory, add a product, assert the cart.
+⠀
+That separation pays off when multiple tests use the same page controls: locator changes and UI actions have one obvious place to update, while specs focus on expected behavior.
+⠀
+Keep assertions in the test where possible. Expose Locators so Playwright’s web-first assertions can retry; returning a boolean or count takes a one-time snapshot instead.
+⠀
+𝗪𝗵𝗲𝗻 𝘁𝗼 𝘀𝗸𝗶𝗽 𝗶𝘁
+For a tiny, one-off check with no shared UI behavior, a page class can add more files and indirection than value. Direct locators in the test may be clearer. Avoid building a generic page-object layer before the suite has repeated patterns to justify it.
+⠀
+A good rule: extract a page object when it makes repeated UI work easier to change without hiding the test’s purpose.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+Where do you draw the line between a reusable page object and needless abstraction? 👇
+⠀
+#Playwright #TestAutomation #PageObjectModel #SoftwareTesting #SDET

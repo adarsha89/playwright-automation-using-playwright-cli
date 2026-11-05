@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browser Automation Comparison</title>
+<style>
+  :root { --bg:#ffffff; --ink:#1b1f24; --muted:#5b6470; --line:#e3e6ea; --head:#f4f6f8; --pw:#2e7d32; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.45 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .card { width:1200px; padding:44px 48px 36px; }
+  h1 { margin:0 0 6px; font-size:32px; letter-spacing:-0.01em; }
+  .sub { margin:0 0 26px; color:var(--muted); font-size:17px; }
+  table { width:100%; border-collapse:collapse; table-layout:fixed; }
+  th, td { text-align:left; vertical-align:top; padding:13px 14px; border-bottom:1px solid var(--line); }
+  thead th { background:var(--head); font-size:18px; border-bottom:2px solid #cfd5dc; }
+  thead th:first-child { width:17%; }
+  tbody th { font-weight:600; color:var(--ink); font-size:15px; }
+  td { font-size:15px; }
+  tr.fit td, tr.fit th { background:#f7fbf7; border-top:2px solid #cfd5dc; }
+  .note { margin-top:18px; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Playwright, Selenium, Cypress, WebdriverIO: pick by constraint</h1>
+  <p class="sub">A decision guide for test architects, not a ranking.</p>
+  <table>
+    <thead>
+      <tr><th>Criterion</th><th>Playwright</th><th>Selenium</th><th>Cypress</th><th>WebdriverIO</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Languages</th><td>JS/TS, Python, Java, .NET</td><td>Java, Python, C#, Ruby, JavaScript</td><td>JavaScript only</td><td>Node.js (JS/TS)</td></tr>
+      <tr><th>Waiting</th><td>Auto-waits for actionability; retrying web-first assertions</td><td>Explicit waits you write (WebDriverWait)</td><td>Built-in retry of queries and assertions</td><td>Waits for elements to be interactable</td></tr>
+      <tr><th>Browsers</th><td>Chromium, Firefox, patched WebKit (not branded Safari)</td><td>Real browsers via W3C WebDriver, incl. Safari (safaridriver)</td><td>Chrome family, Firefox, WebKit</td><td>Real browsers via browser drivers, incl. Safari</td></tr>
+      <tr><th>Network control</th><td>page.route / waitForResponse, built in</td><td>WebDriver BiDi; CDP route is Chromium-only</td><td>cy.intercept, built in</td><td>WebDriver BiDi (default protocol)</td></tr>
+      <tr><th>Multi-user &amp; origins</th><td>Multiple isolated contexts per test</td><td>Multiple driver sessions</td><td>One browser at a time; one superdomain per test unless cy.origin</td><td>Multiple sessions (multiremote)</td></tr>
+      <tr><th>Debugging</th><td>Trace Viewer, HTML report</td><td>Logs, screenshots, your own tooling</td><td>Time-travel command log</td><td>Reporters and services</td></tr>
+      <tr class="fit"><th>Best fit when…</th><td>New framework; same tests on three engines; network control everywhere; UI + API in one runner</td><td>Branded Safari must be certified; existing Grid; widest language choice</td><td>JavaScript front-end team debugging tests while building features</td><td>Web plus native mobile (Appium) in one Node.js stack</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Based on official docs (playwright.dev, selenium.dev, docs.cypress.io, webdriver.io) as checked on 2026-09-29. Capabilities change; re-check before deciding.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(npm test *)",
+      "Bash(npx playwright test *)",
+      "Bash(npm install *)",
+      "Bash(npm run lint *)",
+      "Bash(npm run build *)"
+    ],
+    "ask": [
+      "Bash(rm *)",
+      "Bash(git reset *)",
+      "Bash(git push --force *)",
+      "Bash(git branch -D *)",
+      "Bash(kill *)"
+    ]
+  },
+  "disabledMcpjsonServers": [
+    "playwright-test"
+  ]
+}

@@ -1,0 +1,29 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟮
+⠀
+expect(await cart.count()).toBe(0) and await expect(cart).toHaveCount(0) look like the same check. In Playwright, only the second one waits.
+⠀
+Previously, in Learning 1: CI should take its Playwright version and env contract from the framework's own files, the lockfile and a Zod schema, not hand-edited pipeline values. In Learning 2: page objects should expose Locators, not counts or booleans, so every assertion keeps Playwright's auto-retry.
+⠀
+𝗧𝗵𝗲 𝗽𝗿𝗼𝗯𝗹𝗲𝗺
+A SauceDemo cart spec asserted through page-object helpers. getCartBadgeCount() returned a number and hasProduct(name) returned a boolean, so the spec read expect(await …).toBe(…).
+⠀
+The await resolves the value once, and the matcher compares that snapshot. Playwright's auto-retry never gets a chance, so the check depends on whatever the page showed at that instant.
+⠀
+𝗧𝗵𝗲 𝗳𝗶𝘅
+The refactor handed Locators to expect instead:
+• expect(await inventory.getCartBadgeCount()).toBe(0) became await expect(inventory.cartBadge).toHaveCount(0)
+• expect(await cart.hasProduct(BACKPACK)).toBe(true) became await expect(cart.cartItemNames).toHaveText([BACKPACK])
+⠀
+The second one is also stricter: toHaveText with an array asserts the exact list of names, not just that one is present.
+⠀
+𝗪𝗵𝘆 𝗶𝘁 𝘀𝗹𝗶𝗽𝗽𝗲𝗱 𝗽𝗮𝘀𝘁 𝗹𝗶𝗻𝘁
+eslint-plugin-playwright's 𝗽𝗿𝗲𝗳𝗲𝗿-𝘄𝗲𝗯-𝗳𝗶𝗿𝘀𝘁-𝗮𝘀𝘀𝗲𝗿𝘁𝗶𝗼𝗻𝘀 rule was on in this repo, and the old spec still passed lint. The snapshot was hidden behind a page-object method, where the rule doesn't seem to look.
+⠀
+𝗧𝗵𝗲 𝗱𝗲𝘀𝗶𝗴𝗻 𝗿𝘂𝗹𝗲
+The fix belongs in page-object design, not spec review. If page objects return values, every spec author has to remember to avoid them. If they expose Locators (cartBadge, cartItemNames), the retrying assertion becomes the easy path.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+In your framework, do page objects return Locators for assertions, or values like counts and booleans? 👇
+⠀
+#Playwright #TestAutomation #TestArchitecture #PageObjectModel #SDET

@@ -1,0 +1,35 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟲
+⠀
+A passing UI test shows the flow ran. It doesn't show the test would notice a bug.
+⠀
+Mutation testing checks exactly that, and it matters more as AI makes tests cheaper to produce than to review.
+⠀
+Previously, in Learning 5: use page objects to centralize reusable UI mechanics, while keeping test intent and assertions visible. In Learning 6: trust a green test only after a deliberately injected defect has turned it red.
+⠀
+𝗪𝗵𝗮𝘁 𝗺𝘂𝘁𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝗶𝘀
+Introduce a small, deliberate defect (a mutant), then run the tests. If a test fails, the mutant is 𝗸𝗶𝗹𝗹𝗲𝗱. If everything stays green, it 𝘀𝘂𝗿𝘃𝗶𝘃𝗲𝗱, and you have found a gap in your checks. Classic tools mutate source code, but the idea isn't limited to that.
+⠀
+𝗪𝗵𝘆 𝗔𝗣𝗜 𝗮𝗻𝗱 𝗨𝗜 𝘁𝗲𝘀𝘁𝘀 𝗻𝗲𝗲𝗱 𝗶𝘁
+API and UI tests check the product. Mutation testing checks those tests: would this assertion notice a wrong field in a response, or wrong text on a page? It adds to both layers rather than replacing either.
+⠀
+AI raises the stakes. A generated test can walk through a flow, pass and still assert too little, and a growing pile of green tests is easy to over-trust. A mutation run asks the same question whoever or whatever wrote the test.
+⠀
+𝗛𝗼𝘄 𝘁𝗵𝗶𝘀 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸 𝗱𝗼𝗲𝘀 𝗶𝘁 𝗳𝗼𝗿 𝗨𝗜
+These UI tests target sites the repo doesn't own, such as SauceDemo, so the defect goes into the live page rather than application source:
+→ Opt-in: MUTATION_ENABLED defaults to false, and the config refuses to load with it on in CI.
+→ Selection: a project-level grep runs only tests tagged @mutation-target.
+→ Injection: applyUiMutation() hides an element or replaces its text just before the assertions. With the flag off, it does nothing.
+→ Isolation: mutation runs skip the shared browser and use per-worker browsers.
+⠀
+The cart test shows the payoff. The mutation replaces the product name, yet toHaveCount(1) still passes; only toHaveText catches it. A count-only test would stay green with the wrong product on screen.
+⠀
+𝗧𝗵𝗲 𝘁𝗿𝗮𝗱𝗲𝗼𝗳𝗳
+Here a red run is the good result, so each failure has to be read: an unrelated failure can look like a kill. The mutants are hand-placed in a few specs, with two defect types, no mutation score yet and no API coverage. They only reveal gaps where someone chose to look.
+⠀
+Still, it's a cheap first step: pick a few critical tests, break what they claim to verify, and confirm they go red.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+Which of your tests would you break first to see whether it really catches a bug? 👇
+⠀
+#MutationTesting #Playwright #TestAutomation #AITesting #SDET

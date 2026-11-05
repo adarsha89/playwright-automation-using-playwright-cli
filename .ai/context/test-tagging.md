@@ -1,0 +1,7 @@
+# Test Tagging
+
+Rules for tagging every Playwright testcase in this repo.
+
+- **Every testcase must carry tags, added or updated whenever a testcase is created or modified.** Use Playwright's `tag` test option (the options object passed as the second argument to `test()`, e.g. `test('logs in with valid credentials and lands on the inventory page', { tag: ['@smoke', '@login-valid-credentials'] }, async ({ page }) => { ... })`), not inline `@tag` text appended to the title string. Tag values still start with `@` per Playwright's convention. Consistent with existing specs like `tests/ui/example.spec.ts`.
+- **Every testcase must have its own unique tag that identifies specifically what it tests**, in addition to any shared classification tags (`@smoke`, `@regression`, etc.), all listed in the same `tag` array. The unique tag should read as a short, kebab-case description of the scenario under test (e.g. `@login-valid-credentials`, `@login-invalid-password`, `@inventory-add-to-cart`), so a single tag alone is enough to identify which testcase ran/failed in a report without opening the file. Do not reuse a unique tag across two different testcases.
+- When adding a new testcase or editing an existing one's behavior, review its tags as part of the change: add the unique scenario tag if missing, and add/update classification tags (`@smoke`, `@regression`, etc.) in the `tag` array to reflect what the test now covers.

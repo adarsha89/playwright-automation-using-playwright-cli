@@ -1,0 +1,26 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟰
+⠀
+Why does Playwright often feel faster on modern web apps—and why can it be less timing-flaky?
+⠀
+The useful answer is in two places: synchronization built into actions, and concurrency built into the runner.
+⠀
+Previously, in Learning 3: auto-waiting removes hand-written waits and stale-element handling, but does not by itself guarantee shorter suite runtime. In Learning 4: Playwright synchronizes actions against page state, while parallel workers and browser reuse can reduce overhead.
+⠀
+𝗪𝗵𝘆 𝘁𝗵𝗲 𝘄𝗮𝗶𝘁 𝗱𝗶𝗳𝗳𝗲𝗿𝘀
+In this repo, adding an item is a locator click. Playwright waits for the target to be uniquely resolved, visible, stable, unobscured and enabled; locators resolve against the current DOM when used. That helps with pages that rerender while loading.
+⠀
+With Selenium, you typically express synchronization through explicit waits and expected conditions. That is flexible, but the test author must choose the condition and ensure it matches the real UI state. Neither tool makes a slow or unstable app reliable by itself.
+⠀
+𝗪𝗵𝗲𝗿𝗲 𝘀𝗽𝗲𝗲𝗱 𝗰𝗼𝗺𝗲𝘀 𝗳𝗿𝗼𝗺
+This repo enables fullyParallel and configures Chromium, Firefox and WebKit projects. Its shared-browser setup reuses one browser process per engine while each test still gets its own context and page. Less repeated browser startup plus parallel workers can improve throughput; the gain depends on worker limits, app speed and test design. Across a large suite, small per-test savings can add up and become more visible.
+⠀
+Auto-waiting is mainly a reliability and authoring advantage: it avoids fixed sleeps and many custom retry loops. A wait that exits as soon as the right condition is true can also avoid wasting a fixed delay.
+⠀
+𝗧𝗵𝗲 𝘁𝗿𝗮𝗱𝗲-𝗼𝗳𝗳
+Selenium can also run in parallel and use strong wait helpers. Playwright is not automatically faster in every suite. Compare equivalent workloads and measure before attributing a speedup to the tool.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+Which has mattered more in your suite: smarter waits, fewer browser launches, or parallel workers? 👇
+⠀
+#Playwright #Selenium #TestAutomation #WebTesting #SDET

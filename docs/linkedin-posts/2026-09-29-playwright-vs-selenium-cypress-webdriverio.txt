@@ -1,0 +1,32 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟭
+⠀
+Playwright, Selenium, Cypress or WebdriverIO isn't a ranking question. It's a question of which constraints you can't move.
+⠀
+Two frameworks automating the same demo shop, one in Playwright and one in Selenium + Cucumber, show where those constraints bite.
+⠀
+𝗪𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝘀𝗵𝗼𝘄𝗲𝗱 𝘂𝗽
+The Selenium framework captures and manipulates network traffic through the Chrome DevTools Protocol, which only Chromium browsers expose. On Firefox, those scenarios are reported as pending instead of running.
+⠀
+The Playwright suite asserts network responses with waitForResponse, and the same specs passed on Chromium, Firefox and WebKit. Its API tests run in the same runner as a separate project.
+⠀
+𝗔𝘁 𝗮 𝗴𝗹𝗮𝗻𝗰𝗲
+→ Languages: Playwright JS/TS, Python, Java, .NET · Selenium Java, Python, C#, Ruby, JS · Cypress JavaScript · WebdriverIO Node.js
+→ Waiting: Playwright auto-waits and retries assertions · Cypress retries queries and assertions · WebdriverIO waits for interactable · Selenium explicit waits you write
+→ Browsers: Playwright Chromium, Firefox, patched WebKit (not branded Safari) · Selenium real browsers incl. Safari · Cypress Chrome family, Firefox, WebKit · WebdriverIO via browser drivers
+→ Network control: Playwright page.route · Cypress cy.intercept · Selenium and WebdriverIO via WebDriver BiDi (Selenium's CDP route is Chromium-only)
+→ Multi-user and origins: Playwright multiple contexts per test · Cypress one browser at a time, one superdomain per test unless cy.origin
+→ Debugging: Playwright Trace Viewer · Cypress time-travel command log
+⠀
+𝗪𝗵𝗲𝗻 𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗯𝗲𝘁𝘁𝗲𝗿 𝗽𝗶𝗰𝗸
+A new framework that needs the same tests on three engines, network control on all of them, multi-user flows, and UI plus API checks in one runner, in the language your team already uses.
+⠀
+𝗪𝗵𝗲𝗻 𝗶𝘁 𝗶𝘀𝗻'𝘁
+→ You must certify branded Safari, or already run a Selenium Grid: 𝗦𝗲𝗹𝗲𝗻𝗶𝘂𝗺.
+→ A JavaScript front-end team that debugs tests while building features: 𝗖𝘆𝗽𝗿𝗲𝘀𝘀.
+→ Web and native mobile apps in one Node.js stack, via Appium: 𝗪𝗲𝗯𝗱𝗿𝗶𝘃𝗲𝗿𝗜𝗢.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+Which constraint decided your last tool choice: language, Safari, mobile, or an existing Grid?
+⠀
+#Playwright #Selenium #Cypress #WebdriverIO #TestArchitecture

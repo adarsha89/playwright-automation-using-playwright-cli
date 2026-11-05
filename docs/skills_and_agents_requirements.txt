@@ -1,0 +1,50 @@
+SKILLS FOR WEB UI AUTOMATION  REPO
+
+
+Create following skills that can be used for a Playwright Test framework with TypeScript and Playwright CLI
+1. setup-playwright-automation-framework
+ This skill should setup/modify a Playwright + TypeScript automation framework in the repo based on certain inputs provided one by one as answers to questions or provided initially.
+Ask following inputs before setting up the framework in this repo based on user inputs:
+I. What should this framework cover?
+ a. UI / E2E browser testing
+ b. API testing (via Playwright's request fixture)
+ c. Component testing
+ d. Visual regression testing
+ e. Accessibility testing
+II. What test authoring/execution style should be used?
+ a. Native Playwright Test runner (@playwright/test)
+ b. Cucumber-JS (BDD) with playwright-bdd or a custom glue layer
+III. Which browsers/platforms need to be supported (Chromium, Firefox, WebKit, mobile emulation)?
+IV. Which CI/CD platform will run this (GitHub Actions, Jenkins, GitLab CI, Azure DevOps)?
+Based on the inputs, set up a Playwright/TypeScript test automation framework using the Playwright CLI (npx playwright ...) while adhering to guidelines and design principles of a test automation framework including:
+ a. Layered / Modular Architecture (Page Object Model / Screenplay pattern, fixtures, API client layer)
+ b. Reusability (shared fixtures via test.extend, reusable locators/components)
+ c. Flexibility / Configurability (playwright.config.ts projects, .env, typed config module)
+ d. Ease of Understanding / Readability (TypeScript strict mode, ESLint/Prettier, descriptive test titles)
+ e. Maintainability (centralized locators, data-testid/role-based selectors)
+ f. Scalability (parallel workers, sharding, tagging)
+ g. Robustness / Reliability (auto-waiting, no hardcoded waits, retries, isolated test state)
+ h. Reporting & Traceability (HTML reporter, trace/video on failure, JUnit/Allure)
+ i. Security & Data Hygiene (no committed secrets, synthetic test data)
+ j. CI/CD Integration Readiness (working pipeline file, headless execution, browser install caching)
+Before doing framework changes, print the entire plan to a md file along with workflow diagrams of structure and working so that user can review and approve. Once approved, go ahead with the changes.
+ The framework code changes should not break any existing automation code.
+ At the end of skill setup-api-automation-framework create a documnet with all code changes to a md file setup-framework.md . It should be possible to provide this to code review agent to review the code change
+2. plan-automation-code-changes
+ This skill should plan Playwright/TypeScript automation code changes based on certain user inputs provided one by one as answers of questions or provided initially.
+Ask following inputs:
+Page URLs / Figma or design links / user flow descriptions, or API docs/sample inputs-outputs for any APIs involved
+Jira or Confluence doc links or word files with documentation of the feature (optional)
+Any required assertions or expectations that the user is already aware of
+Should test cases be tagged/grouped to categorize runnability on an environment (e.g. @smoke, @regression, Playwright projects)
+The plan should have good parametrization and high coverage. It should also adhere to the same guidelines and design principles listed above (a–j).
+Once plan is ready, print the entire plan to a md file along with workflow diagrams of structure and working so that user can review.
+3. review-code-changes
+ This skill should thoroughly review Playwright/TypeScript code changes while considering the functional expectations and already provided guidelines in the memory files. The input to this should be a md file with a list of code changes mentioned.
+It should give a score of 1 to 5 based on various parameters of code quality, correctness (temperature 0), or coverage (for coverage keep a temperature of 0 — do not assume any possible test cases unless it makes complete sense given the requirements).
+4. make-code-changes
+ Use a code change plan mentioned in a md file and make all the required Playwright/TypeScript code changes. If there is any TypeScript compilation or lint issue after code changes, fix it without changing the intent of the previous code changes.
+5. check-code-quality
+ Set up SonarQube (or Sonar Scanner CLI/SonarCloud) if not already present for the TypeScript codebase, then scan the code to check for code quality and report the code quality to a md file.
+6. analyze-task
+ This skill should analyze the task given to it as input. It takes the task and gives output as a clear, explicitly defined requirements document for writing Playwright/TypeScript test code. The output is a md file with clear goals and requirements, similar to how a Lead/Senior SDET would brief a junior engineer — without giving any implementation details.

@@ -1,0 +1,26 @@
+𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸, 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝟳
+⠀
+AI can draft a Playwright test quickly. The bigger accelerator is letting it inspect the real page first.
+⠀
+In this framework, AI-assisted planning starts with a headless browser session through playwright-cli.
+⠀
+Previously, in Learning 6: a green test is more trustworthy when it turns red against an intentionally introduced defect. In Learning 7: AI can plan and create tests faster when its starting point is observed browser evidence.
+⠀
+𝗧𝗵𝗲 𝗯𝗼𝘁𝘁𝗹𝗲𝗻𝗲𝗰𝗸
+Planning from assumptions creates rework: the locator may not exist, a state may behave differently, or the assertion may miss what matters. This framework requires exploring the live page before UI test code is written.
+⠀
+𝗔 𝗯𝗲𝘁𝘁𝗲𝗿 𝘄𝗼𝗿𝗸𝗳𝗹𝗼𝘄
+An AI planner can use playwright-cli to walk through pages and states, inspect locators, and capture what the browser actually shows. Save snapshots beside the exploration notes, then use that evidence to shape scenarios, page objects and assertions.
+⠀
+Need a human to inspect the live page? Use playwright-cli show --annotate on demand. The normal exploration stays headless; the live view is there when it helps review.
+⠀
+𝗞𝗲𝗲𝗽 𝗶𝘁 𝗿𝗲𝘃𝗶𝗲𝘄𝗮𝗯𝗹𝗲
+Snapshots and CLI output give the plan concrete evidence to refer back to. Generated locators are still candidates: check them against the repo’s locator rules and confirm the final locator resolves as intended.
+⠀
+The useful pattern is simple: let AI do the repeatable inspection and drafting, while people review the coverage and decisions. Faster work comes from reducing guesswork, not skipping review.
+⠀
+Code repository: https://github.com/adarsha89/playwright-test-automation
+⠀
+How do you give AI enough browser evidence to draft tests without letting it guess at the UI?
+⠀
+#Playwright #TestAutomation #AI #SDET
