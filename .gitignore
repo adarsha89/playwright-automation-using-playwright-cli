@@ -2,13 +2,13 @@
 node_modules/
 
 # Playwright
-/test-results/
-/playwright-report/
-/playwright/.cache/
-/blob-report/
-/reports/
-/docs
-/.playwright-cli/
+test-results/
+playwright-report/
+playwright/.cache/
+blob-report/
+reports/
+docs
+.playwright-cli/
 
 # Build output
 dist/
