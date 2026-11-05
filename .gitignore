@@ -7,7 +7,7 @@ node_modules/
 /playwright/.cache/
 /blob-report/
 /reports/
-/docs/debug/
+/docs
 /.playwright-cli/
 
 # Build output
@@ -39,5 +39,6 @@ coverage/
 # Playwright
 /playwright/.auth/
 
+/Users/adarshashetty/Documents/GitHub/playwright-automation-using-playwright-cli
 
 
