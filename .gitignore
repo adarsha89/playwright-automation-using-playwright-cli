@@ -2,13 +2,13 @@
 node_modules/
 
 # Playwright
-test-results/
-playwright-report/
-playwright/.cache/
-blob-report/
-reports/
-docs
-.playwright-cli/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/blob-report/
+/reports/
+/docs/debug/
+/.playwright-cli/
 
 # Build output
 dist/
@@ -37,5 +37,4 @@ npm-debug.log*
 coverage/
 
 # Playwright
-playwright
-/docs
+/playwright/.auth/
