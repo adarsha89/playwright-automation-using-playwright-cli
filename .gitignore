@@ -37,8 +37,4 @@ npm-debug.log*
 coverage/
 
 # Playwright
-/playwright/.auth/
-
-/Users/adarshashetty/Documents/GitHub/playwright-automation-using-playwright-cli
-
-
+playwright
